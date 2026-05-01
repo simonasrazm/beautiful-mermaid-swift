@@ -153,6 +153,9 @@ public final class MermaidImageRenderer {
         }
 
         ctx.scaleBy(x: scale, y: scale)
+        // Flip Y-axis: DiagramRenderer expects top-left origin (y=0 at top)
+        ctx.translateBy(x: 0, y: diagBounds.height)
+        ctx.scaleBy(x: 1, y: -1)
         ctx.translateBy(x: -diagBounds.minX, y: -diagBounds.minY)
 
         prepared.render(ctx, diagBounds)
@@ -215,6 +218,9 @@ public final class MermaidImageRenderer {
 
         ctx.translateBy(x: offsetX, y: offsetY)
         ctx.scaleBy(x: fitScale, y: fitScale)
+        // Flip Y-axis: DiagramRenderer expects top-left origin (y=0 at top)
+        ctx.translateBy(x: 0, y: diagBounds.height)
+        ctx.scaleBy(x: 1, y: -1)
         ctx.translateBy(x: -diagBounds.minX, y: -diagBounds.minY)
 
         prepared.render(ctx, diagBounds)
